@@ -1,4 +1,4 @@
-// Фонавыя фота слайдаў (SLIDES[].photo — індэкс у гэтым масіве).
+// Фонавыя фота слайдаў (SLIDES[].photo – індэкс у гэтым масіве).
 const PHOTOS = [
   "img/photos/00.jpg",
   "img/photos/01.jpg",
@@ -31,7 +31,7 @@ const PHOTOS = [
 
 const LOGO = "img/logo-2.jpg";
 
-// Фота галерэй на слайдах-фарматах (ключ — SLIDES[].format).
+// Фота галерэй на слайдах-фарматах (ключ – SLIDES[].format).
 const GALLERIES = {
   1: [
     "img/gallery/fests-1.jpg",

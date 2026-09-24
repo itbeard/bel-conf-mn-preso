@@ -54,12 +54,7 @@ const GALLERIES = {
     "img/photos/09.jpg",
     "img/photos/10.jpg",
   ],
-  5: [
-    "img/photos/14.jpg",
-    "img/photos/18.jpg",
-    "img/photos/15.jpg",
-    "img/photos/16.jpg",
-  ],
+  5: ["img/photos/14.jpg", "img/photos/15.jpg", "img/photos/16.jpg"],
   6: ["img/gallery/rafting-1.jpg", "img/photos/07.jpg"],
   7: [
     "img/gallery/tasting-1.jpg",

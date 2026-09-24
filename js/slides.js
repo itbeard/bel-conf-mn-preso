@@ -1,5 +1,5 @@
 // Змест слайдаў.
-// photo — індэкс фота ў PHOTOS (js/media.js), format — ключ галерэі ў chosen (js/media.js).
+// photo — індэкс фота ў PHOTOS (js/media.js), format — ключ галерэі ў GALLERIES (js/media.js).
 const SLIDES = [
   {
     type: "hero",

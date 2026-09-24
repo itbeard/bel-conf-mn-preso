@@ -32,8 +32,7 @@ const PHOTOS = [
 const LOGO = "img/logo.jpg";
 
 // Фота галерэй на слайдах-фарматах (ключ — SLIDES[].format).
-// Пры паказе сюды дадаюцца фота праз кнопку «Дадаць фота».
-const chosen = {
+const GALLERIES = {
   1: [
     "img/gallery/fests-1.jpg",
     "img/gallery/fests-2.jpg",

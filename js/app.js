@@ -37,30 +37,16 @@ function render() {
       base = `<img class="fullphoto-img" src="${im(s.photo)}" alt="">`;
       body = "";
     } else if (s.type === "format") {
-      const pics = chosen[s.format] || [];
+      const pics = GALLERIES[s.format] || [];
       const n = pics.length;
       const layout = n > 4 ? "count-many" : "count-" + n;
       const gallery = n
         ? `<div class="format-gallery ${layout}">${pics.map((src, j) => `<img src="${src}" alt="${esc(s.title)} — фота ${j + 1}">`).join("")}${n > 6 ? `<span class="more-count">+${n - 6} фота</span>` : ""}</div><div class="format-shade"></div>`
-        : `<div class="empty" data-upload="${s.format}" role="button" tabindex="0">＋ Дадаць некалькі фотаздымкаў</div>`;
-      base = `${logo}<div class="eyebrow">${esc(s.eyebrow)}</div>${gallery}<div class="format-title">${esc(s.title)}</div><div class="format-tools"><button data-upload="${s.format}">＋ ${n ? "Дадаць яшчэ фота" : "Дадаць фота"}</button>${n ? `<button class="secondary" data-clear="${s.format}">Ачысціць галерэю</button><span class="photo-total">${n} фота</span>` : ""}</div>`;
+        : "";
+      base = `${logo}<div class="eyebrow">${esc(s.eyebrow)}</div>${gallery}<div class="format-title">${esc(s.title)}</div>`;
     }
     return `<section class="slide ${s.type} ${i === current ? "active" : ""}" aria-hidden="${i !== current}" data-slide="${i}">${base}${body}<div class="foot">МОВА НАНОВА · БЕЛАРУСЬ / ПОЛЬШЧА</div><div class="index">${String(i + 1).padStart(2, "0")} / ${String(SLIDES.length).padStart(2, "0")}</div></section>`;
   }).join("");
-  document.querySelectorAll("[data-upload]").forEach((el) =>
-    el.addEventListener("click", () => {
-      uploadFor = +el.dataset.upload;
-      document.getElementById("photoInput").click();
-    }),
-  );
-  document.querySelectorAll("[data-clear]").forEach((el) =>
-    el.addEventListener("click", () => {
-      const k = +el.dataset.clear;
-      (chosen[k] || []).forEach((url) => URL.revokeObjectURL(url));
-      chosen[k] = [];
-      render();
-    }),
-  );
   const vb = document.getElementById("videoBox");
   if (vb) {
     vb.addEventListener("click", () =>
@@ -76,20 +62,6 @@ function render() {
   document.getElementById("prev").disabled = current === 0;
   document.getElementById("next").disabled = current === SLIDES.length - 1;
 }
-let uploadFor = 0;
-document.getElementById("photoInput").addEventListener("change", (e) => {
-  const files = Array.from(e.target.files || []);
-  if (files.length) {
-    chosen[uploadFor] ??= [];
-    chosen[uploadFor].push(
-      ...files
-        .filter((f) => f.type.startsWith("image/"))
-        .map((f) => URL.createObjectURL(f)),
-    );
-    render();
-  }
-  e.target.value = "";
-});
 document.getElementById("videoInput").addEventListener("change", (e) => {
   const f = e.target.files?.[0];
   if (f) {

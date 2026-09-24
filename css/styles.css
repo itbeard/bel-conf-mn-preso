@@ -308,22 +308,6 @@ body {
   left: 6%;
   top: 7%;
 }
-.empty {
-  position: absolute;
-  inset: 12% 8% 20%;
-  border: 2px dashed #ffffff55;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c2bdba;
-  background: #ffffff08;
-  font-size: clamp(14px, 1.5vw, 21px);
-  cursor: pointer;
-}
-.empty:hover {
-  background: #ffffff18;
-}
 .media-btn {
   position: absolute;
   right: 5%;
@@ -522,42 +506,6 @@ input[type="file"] {
   border-radius: 12px;
   padding: 10px 16px;
   z-index: 3;
-}
-.format .format-shade {
-  pointer-events: none;
-}
-.format .format-tools {
-  position: absolute;
-  left: 5%;
-  bottom: 6%;
-  z-index: 8;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.format .format-tools button {
-  cursor: pointer;
-  background: #c92f46;
-  color: #fff;
-  border: 1px solid #ffffff55;
-  border-radius: 9px;
-  padding: 10px 14px;
-  font-weight: 750;
-  font-size: clamp(10px, 1vw, 14px);
-}
-.format .format-tools button.secondary {
-  background: #141a22dd;
-}
-.format .format-tools .photo-total {
-  color: #fff;
-  background: #10151bce;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: clamp(10px, 1vw, 14px);
-}
-.format .format-title {
-  pointer-events: none;
 }
 .fullphoto {
   padding: 0;

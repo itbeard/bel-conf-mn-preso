@@ -16,7 +16,7 @@ function render() {
       s.photo != null
         ? `<img class="bgphoto ${s.type === "hero" || s.type === "thanks" ? "strong" : ""}" src="${im(s.photo)}" alt=""><div class="veil"></div>`
         : "";
-    let logo = `<img class="logo" src="${LOGO}" alt="Лагатып Мова Нанова Уроцлаў"><div class="brand">УРОЦЛАЎ</div>`;
+    let logo = `<img class="logo" src="${LOGO}" alt="Лагатып Мова Нанова Уроцлаў">`;
     let base = `${bg}${logo}<div class="eyebrow">${esc(s.eyebrow)}</div><h1 class="title">${esc(s.title)}</h1>`;
     let body = "";
     if (s.type === "hero") {
@@ -34,16 +34,16 @@ function render() {
     } else if (s.type === "institutions") {
       body = `<div class="cards"><div class="card"><b>${esc(s.left[0])}</b><p>${esc(s.left[1])}</p></div><div class="card"><b>${esc(s.right[0])}</b><p>${esc(s.right[1])}</p></div></div>`;
     } else if (s.type === "fullphoto") {
-      base = `<img class="fullphoto-img" src="${im(s.photo)}" alt="">`;
+      base = `<img class="fullphoto-bg" src="${im(s.photo)}" alt="" aria-hidden="true"><img class="fullphoto-img" src="${im(s.photo)}" alt="">`;
       body = "";
     } else if (s.type === "format") {
       const pics = GALLERIES[s.format] || [];
       const n = pics.length;
-      const layout = n > 4 ? "count-many" : "count-" + n;
+      const layout = n >= 6 ? "count-many" : "count-" + n;
       const gallery = n
         ? `<div class="format-gallery ${layout}">${pics.map((src, j) => `<img src="${src}" alt="${esc(s.title)} — фота ${j + 1}">`).join("")}${n > 6 ? `<span class="more-count">+${n - 6} фота</span>` : ""}</div><div class="format-shade"></div>`
         : "";
-      base = `${logo}<div class="eyebrow">${esc(s.eyebrow)}</div>${gallery}<div class="format-title">${esc(s.title)}</div>`;
+      base = `${logo}${gallery}<div class="format-caption"><div class="eyebrow">${esc(s.eyebrow)}</div><div class="format-title">${esc(s.title)}</div></div>`;
     }
     return `<section class="slide ${s.type} ${i === current ? "active" : ""}" aria-hidden="${i !== current}" data-slide="${i}">${base}${body}<div class="foot">МОВА НАНОВА · БЕЛАРУСЬ / ПОЛЬШЧА</div><div class="index">${String(i + 1).padStart(2, "0")} / ${String(SLIDES.length).padStart(2, "0")}</div></section>`;
   }).join("");

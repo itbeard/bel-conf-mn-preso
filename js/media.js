@@ -29,7 +29,7 @@ const PHOTOS = [
   "img/photos/26.jpg",
 ];
 
-const LOGO = "img/logo.jpg";
+const LOGO = "img/logo-2.jpg";
 
 // Фота галерэй на слайдах-фарматах (ключ — SLIDES[].format).
 const GALLERIES = {

@@ -43,21 +43,40 @@ function render() {
     } else if (s.type === "institutions") {
       body = `<div class="cards"><div class="card"><b>${esc(s.left[0])}</b><p>${esc(s.left[1])}</p></div><div class="card"><b>${esc(s.right[0])}</b><p>${esc(s.right[1])}</p></div></div>`;
     } else if (s.type === "fullphoto") {
-      base = `<img class="fullphoto-bg" src="${im(s.photo)}" alt="" aria-hidden="true"><img class="fullphoto-img" src="${im(s.photo)}" alt="">`;
+      base = `<img class="blur-bg" src="${im(s.photo)}" alt="" aria-hidden="true"><img class="fullphoto-img" src="${im(s.photo)}" alt="">`;
       body = "";
     } else if (s.type === "video") {
-      base = `<img class="clip-bg" src="${esc(s.poster)}" alt="" aria-hidden="true"><div class="clip-stage">${clip(s.src, s.poster, i)}</div>`;
+      base = `<img class="blur-bg" src="${esc(s.poster)}" alt="" aria-hidden="true"><div class="clip-stage">${clip(s.src, s.poster, i)}</div>`;
       body = "";
     } else if (s.type === "format") {
       const pics = GALLERIES[s.format] || [];
       const n = pics.length;
-      const layout = n >= 6 ? "count-many" : "count-" + n;
-      const gallery = n
-        ? `<div class="format-gallery ${layout}">${pics.map((src, j) => `<img src="${src}" alt="${esc(s.title)} – фота ${j + 1}">`).join("")}${n > 6 ? `<span class="more-count">+${n - 6} фота</span>` : ""}</div><div class="format-shade"></div>`
-        : "";
-      base = `${logo}${gallery}<div class="format-caption">${eyebrow}<div class="format-title">${esc(s.title)}</div></div>`;
+      const caption =
+        s.title || s.eyebrow
+          ? `<div class="format-caption">${eyebrow}${s.title ? `<div class="format-title">${esc(s.title)}</div>` : ""}</div>`
+          : "";
+      if (s.fit && n) {
+        // Адно фота цалкам (без абразання) карткай справа на размытым фоне.
+        base = `<img class="blur-bg" src="${pics[0]}" alt="" aria-hidden="true"><img class="fit-photo" src="${pics[0]}" alt="${esc(s.title)}">${logo}${caption}`;
+      } else {
+        const layout = n > 7 ? "count-many" : "count-" + n;
+        const gallery = n
+          ? `<div class="format-gallery ${layout}">${pics.map((src, j) => `<img src="${src}" alt="${s.title ? esc(s.title) + " – " : ""}фота ${j + 1}">`).join("")}${n > 7 ? `<span class="more-count">+${n - 6} фота</span>` : ""}</div>${caption ? `<div class="format-shade"></div>` : ""}`
+          : "";
+        base = `${logo}${gallery}${caption}`;
+      }
     }
-    return `<section class="slide ${s.type} ${s.clip ? "has-clip" : ""} ${i === current ? "active" : ""}" aria-hidden="${i !== current}" data-slide="${i}">${base}${body}<div class="foot">МОВА НАНОВА · БЕЛАРУСЬ / ПОЛЬШЧА</div><div class="index">${String(i + 1).padStart(2, "0")} / ${String(SLIDES.length).padStart(2, "0")}</div></section>`;
+    const cls = [
+      "slide",
+      s.type,
+      s.clip && "has-clip",
+      s.fit && "fit",
+      s.type === "format" && !s.title && !s.eyebrow && "bare",
+      i === current && "active",
+    ]
+      .filter(Boolean)
+      .join(" ");
+    return `<section class="${cls}" aria-hidden="${i !== current}" data-slide="${i}">${base}${body}<div class="foot">МОВА НАНОВА · БЕЛАРУСЬ / ПОЛЬШЧА</div><div class="index">${String(i + 1).padStart(2, "0")} / ${String(SLIDES.length).padStart(2, "0")}</div></section>`;
   }).join("");
   setupClips();
   document.getElementById("counter").textContent =

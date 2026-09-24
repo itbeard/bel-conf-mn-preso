@@ -74,4 +74,13 @@ const GALLERIES = {
   ],
   10: ["img/gallery/intro-1.jpg"],
   11: ["img/gallery/finale-1.jpg"],
+  12: [
+    "img/photos/20.jpg",
+    "img/photos/22.jpg",
+    "img/photos/23.jpg",
+    "img/photos/21.jpg",
+    "img/photos/24.jpg",
+    "img/photos/25.jpg",
+    "img/photos/26.jpg",
+  ],
 };

@@ -11,13 +11,7 @@ const SLIDES = [
     photo: 0,
   },
   { type: "video", src: "video/1.mp4", poster: "video/1-poster.jpg" },
-  { type: "fullphoto", photo: 20 },
-  { type: "fullphoto", photo: 21 },
-  { type: "fullphoto", photo: 22 },
-  { type: "fullphoto", photo: 23 },
-  { type: "fullphoto", photo: 24 },
-  { type: "fullphoto", photo: 25 },
-  { type: "fullphoto", photo: 26 },
+  { type: "format", format: 12 }, // мазаіка з сямі фота, без подпісу
   {
     type: "statement",
     eyebrow: "01 / УСТУП",
@@ -139,7 +133,7 @@ const SLIDES = [
   {
     type: "paradox",
     eyebrow: "16 / МАШТАБ",
-    title: "Парадокс маштабу",
+    title: "МаштабЫ",
     stats: [
       ["18 гарадоў", "сетка ў Беларусі ў найлепшыя часы"],
       ["≈60 чалавек", "сярэдняя аўдыторыя ва Уроцлаве"],
@@ -184,5 +178,11 @@ const SLIDES = [
     photo: 0,
   },
   { type: "video", src: "video/final.mp4", poster: "video/final-poster.jpg" },
-  { type: "format", eyebrow: "ЗАВЯРШЭННЕ", title: "Напрыканцы", format: 11 },
+  {
+    type: "format",
+    eyebrow: "ЗАВЯРШЭННЕ",
+    title: "Напрыканцы",
+    format: 11,
+    fit: true, // паказаць фота цалкам, без абразання
+  },
 ];

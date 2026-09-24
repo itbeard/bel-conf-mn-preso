@@ -513,9 +513,21 @@ body {
 .format .format-gallery.count-5 img:first-child {
   grid-row: span 2;
 }
+.format .format-gallery.count-6,
 .format .format-gallery.count-many {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+/* 7 фота: тры шырокія клеткі зверху, чатыры вузейшыя знізу */
+.format .format-gallery.count-7 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.format .format-gallery.count-7 img:nth-child(-n + 3) {
+  grid-column: span 4;
+}
+.format .format-gallery.count-7 img:nth-child(n + 4) {
+  grid-column: span 3;
 }
 .format .format-gallery img {
   display: block;
@@ -545,13 +557,14 @@ body {
 .fullphoto:before {
   display: none;
 }
-.fullphoto .fullphoto-bg {
+/* Размыты фон з таго ж здымка: fullphoto, video і format.fit */
+.blur-bg {
   position: absolute;
   inset: -6%;
   width: 112%;
   height: 112%;
   object-fit: cover;
-  filter: blur(34px) brightness(0.45) saturate(0.7);
+  filter: blur(36px) brightness(0.42) saturate(0.7);
 }
 .fullphoto .fullphoto-img {
   position: absolute;
@@ -561,11 +574,13 @@ body {
   object-fit: contain;
 }
 .fullphoto .foot,
-.video .foot {
+.video .foot,
+.format.bare .foot {
   display: none;
 }
 .fullphoto .index,
-.video .index {
+.video .index,
+.format.bare .index {
   bottom: 2.5%;
   right: 2.5%;
   color: #e6e1da;
@@ -581,14 +596,6 @@ body {
 }
 .video:before {
   display: none;
-}
-.clip-bg {
-  position: absolute;
-  inset: -6%;
-  width: 112%;
-  height: 112%;
-  object-fit: cover;
-  filter: blur(40px) brightness(0.4) saturate(0.7);
 }
 .clip-stage {
   position: absolute;
@@ -695,4 +702,34 @@ body {
 }
 .has-clip .logo {
   display: none;
+}
+
+/* format.fit: single photo shown whole, as a card on the right */
+.format.fit .fit-photo {
+  position: absolute;
+  top: 4%;
+  right: 5%;
+  height: 88%;
+  width: auto;
+  max-width: 56%;
+  object-fit: contain;
+  background: #000;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px #ffffff14,
+    0 30px 80px #000c;
+}
+.format.fit .logo {
+  right: auto;
+  left: 6%;
+  top: 7%;
+  width: clamp(48px, 7vw, 92px);
+  height: clamp(48px, 7vw, 92px);
+}
+.format.fit .format-caption {
+  right: auto;
+  max-width: 36%;
+}
+.format.fit .format-title {
+  font-size: clamp(28px, 4.2vw, 64px);
 }

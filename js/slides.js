@@ -133,7 +133,7 @@ const SLIDES = [
   {
     type: "paradox",
     eyebrow: "16 / МАШТАБ",
-    title: "МаштабЫ",
+    title: "Маштаб",
     stats: [
       ["18 гарадоў", "сетка ў Беларусі ў найлепшыя часы"],
       ["≈60 чалавек", "сярэдняя аўдыторыя ва Уроцлаве"],
@@ -178,11 +178,5 @@ const SLIDES = [
     photo: 0,
   },
   { type: "video", src: "video/final.mp4", poster: "video/final-poster.jpg" },
-  {
-    type: "format",
-    eyebrow: "ЗАВЯРШЭННЕ",
-    title: "Напрыканцы",
-    format: 11,
-    fit: true, // паказаць фота цалкам, без абразання
-  },
+  { type: "format", format: 11, fit: true }, // мем цалкам, без тэксту
 ];

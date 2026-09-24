@@ -730,6 +730,16 @@ body {
   right: auto;
   max-width: 36%;
 }
+/* fit без тэксту: фота па цэнтры, лагатып на звычайным месцы справа */
+.format.fit.bare .fit-photo {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.format.fit.bare .logo {
+  left: auto;
+  right: 4.5%;
+}
 .format.fit .format-title {
   font-size: clamp(28px, 4.2vw, 64px);
 }

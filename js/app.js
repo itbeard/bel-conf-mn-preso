@@ -119,10 +119,25 @@ function setupClips() {
     });
   });
 }
+// Нумар слайда (1-based) захоўваецца ў hash URL, каб перазагрузка не збівала на пачатак.
+const clampIndex = (n) => Math.max(0, Math.min(SLIDES.length - 1, n));
+const fromHash = () => {
+  const n = parseInt(location.hash.slice(1), 10);
+  return Number.isFinite(n) ? clampIndex(n - 1) : 0;
+};
 function show(n) {
-  current = Math.max(0, Math.min(SLIDES.length - 1, n));
+  current = clampIndex(n);
+  const hash = `#${current + 1}`;
+  if (location.hash !== hash) history.replaceState(null, "", hash);
   render();
 }
+window.addEventListener("hashchange", () => {
+  const n = fromHash();
+  if (n !== current) {
+    current = n;
+    render();
+  }
+});
 document.getElementById("prev").onclick = () => show(current - 1);
 document.getElementById("next").onclick = () => show(current + 1);
 document.getElementById("full").onclick = () => {
@@ -155,4 +170,5 @@ stage.addEventListener(
   },
   { passive: true },
 );
+current = fromHash();
 render();
